@@ -2,3 +2,7 @@ name = "telegram-bot"
 main = "worker.js"
 compatibility_date = "2025-05-29"
 compatibility_flags = ["nodejs_compat"]
+
+[[kv_namespaces]]
+binding = "POINTS_STORE"
+id = "a3157ad25ee94e7daaa7d968811a901a"
