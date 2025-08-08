@@ -1,0 +1,42 @@
+# .github/workflows/deploy-worker.yml
+
+name: Deploy single worker.js
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push events for the main branch
+  push:
+    branches:
+      - main
+  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Checks out your repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      # Step 2: Sets up a Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Step 3: Installs the Cloudflare Wrangler CLI globally
+      - name: Install Cloudflare Wrangler
+        run: npm install -g wrangler
+
+      # Step 4: The core deployment command
+      # This step deploys your worker.js file directly.
+      - name: Deploy worker.js to Cloudflare
+        run: wrangler deploy --name telegram-bot --main-file worker.js
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          
