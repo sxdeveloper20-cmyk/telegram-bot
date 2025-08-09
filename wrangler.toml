@@ -4,7 +4,7 @@ compatibility_date = "2025-05-29"
 compatibility_flags = ["nodejs_compat"]
 
 [vars]
-TELEGRAM_TOKEN = "7404291471:AAGlyiRxnkQ9KM-8aVkECbeIuFuWkJoSdxY"
+BOT_TOKEN = "7404291471:AAGlyiRxnkQ9KM-8aVkECbeIuFuWkJoSdxY"
 
 [[kv_namespaces]]
 binding = "POINTS_STORE"
